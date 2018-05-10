@@ -20,3 +20,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app'
 });
+
+window.Echo.channel('new-release.deployed')
+    .listen('NewReleaseDeployed', (e) => {
+        console.log(e);
+        window.location.reload();
+    });

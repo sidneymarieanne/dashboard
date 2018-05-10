@@ -14,6 +14,7 @@ class NewReleaseDeployed implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $message = "A new release has just been deployed";
     /**
      * Create a new event instance.
      *
@@ -21,7 +22,7 @@ class NewReleaseDeployed implements ShouldBroadcast
      */
     public function __construct()
     {
-        //
+        \Log::info('NewReleaseDeployed event fired');
     }
 
     /**
@@ -31,6 +32,6 @@ class NewReleaseDeployed implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('new-release.deployed');
+        return new Channel('new-release.deployed');
     }
 }
